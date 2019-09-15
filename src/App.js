@@ -2,6 +2,7 @@ import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 import ConsoleComponet from './Components/console';
+import Socketer from './Components/socketer';
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
         </a>
       </header>
       <ConsoleComponet />
+      <Socketer />
     </div>
   );
 }

@@ -4,7 +4,7 @@ import React from 'react'
 
 const mapStateToProps = state => (
     {
-        latest_message: state.latest_message
+        latest_message: JSON.stringify(state.latest_message)
     }
 )
 
