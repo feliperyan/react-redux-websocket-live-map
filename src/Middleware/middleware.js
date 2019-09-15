@@ -1,3 +1,6 @@
+// Adapted from Lina Rudashevski's (@aduranil) excellent post:
+// https://dev.to/aduranil/how-to-use-websockets-with-redux-a-step-by-step-guide-to-writing-understanding-connecting-socket-middleware-to-your-project-km3
+
 import * as actions from '../Store/actions';
 
 const SocketMiddleware = () => {
@@ -17,17 +20,7 @@ const SocketMiddleware = () => {
     const onMessage = store => (event) => {
         const payload = JSON.parse(event.data);
         console.log('receiving server message');
-
-        // switch (payload.type) {
-        //   case 'update_game_players':
-        //     store.dispatch(updateGame(payload.game, payload.current_player));
-        //     break;
-        //   default:
-        //     break;
-        // }
-
         store.dispatch(actions.receivedMessage(payload));
-
     };
 
     // the middleware part of this function
