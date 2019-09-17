@@ -2,12 +2,13 @@ import React from 'react';
 import './App.css';
 import ConsoleComponet from './Components/console';
 import Socketer from './Components/socketer';
-import MapComponent from './Components/map';
+// import MapComponent from './Components/map';
+import MapContainer from './Containers/MapContainer';
 
 function App() {
   return (
     <div className="App">
-      <MapComponent />
+      <MapContainer />
       <ConsoleComponet />
       <Socketer />
     </div>

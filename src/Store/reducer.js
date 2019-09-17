@@ -2,7 +2,12 @@ import Immutable from 'seamless-immutable';
 
 const initialState = Immutable(
     {
-        theMap: '',
+        the_map: {
+            lat: -33.852695,
+            lng: 151.246606,
+            zoom: 13,
+            markers: [[-33.849371, 151.258811], [-33.846508, 151.291528]]
+        },
         latest_message: 'Last one!',
         connection_status: 'connecting...'
     }

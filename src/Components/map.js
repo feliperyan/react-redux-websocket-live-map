@@ -8,25 +8,29 @@ const theStyle = {
 };
 
 const MyMapComponent = (props) => {
-    let state = {
-        lat: 51.505,
-        lng: -0.09,
-        zoom: 13,
-    }
+    // let state = {
+    //     lat: 51.505,
+    //     lng: -0.09,
+    //     zoom: 13,
+    // }
 
     return (
         <div className="map-container">
-            <p>My Map here: </p>
-            <Map center={[state.lat, state.lat]} zoom={state.zoom} style={theStyle}>
+            <p>My Map here: {JSON.stringify(props.map_data)}</p>
+            <Map center={[props.map_data.lat, props.map_data.lng]} zoom={props.map_data.zoom} style={theStyle}>
                 <TileLayer
                     attribution='&copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
                     url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                 />
-                <Marker position={[state.lat, state.lat]}>
-                    <Popup>
-                        A pretty CSS3 popup. <br /> Easily customizable.
-                    </Popup>
-                </Marker>
+                {props.map_data.markers.map((val, index) => {
+                return (
+                    <Marker position={val}>
+                        <Popup>
+                            A pretty CSS3 popup. <br /> Easily customizable.
+                        </Popup>
+                    </Marker> 
+                )
+                })}                                
             </Map>
         </div>
     )
