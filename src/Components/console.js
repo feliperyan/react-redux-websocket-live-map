@@ -11,7 +11,7 @@ const mapStateToProps = state => (
 const ConsoleComponent = (props) => {
     return (
         <div>
-            <h1>Latest Message: {props.latest_message}</h1>
+            <p>Latest Message: {props.latest_message}</p>
         </div>
     )
 }

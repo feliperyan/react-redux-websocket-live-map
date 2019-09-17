@@ -3,16 +3,11 @@ import { Map, TileLayer, Marker, Popup } from 'react-leaflet';
 import './map.css';
 
 const theStyle = {
-    width: "300px",
-    height: "300px"
+    width: "80%",
+    height: "600px"
 };
 
 const MyMapComponent = (props) => {
-    // let state = {
-    //     lat: 51.505,
-    //     lng: -0.09,
-    //     zoom: 13,
-    // }
 
     return (
         <div className="map-container">
@@ -22,16 +17,18 @@ const MyMapComponent = (props) => {
                     attribution='&copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
                     url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                 />
-                {props.map_data.markers.map((val, index) => {
-                return (
-                    <Marker position={val}>
+                {props.drones.map((val, index) => {
+                    return (
+                        <Marker position={val.pos} key={val.id}>
                         <Popup>
                             A pretty CSS3 popup. <br /> Easily customizable.
                         </Popup>
                     </Marker> 
-                )
-                })}                                
+                    )
+                })}
+                                          
             </Map>
+            
         </div>
     )
 }

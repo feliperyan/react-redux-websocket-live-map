@@ -45,14 +45,14 @@ const SocketMiddleware = () => {
                     socket.close();
                 }
                 socket = null;
-                console.log('websocket closed');
+                //console.log('websocket closed');
                 break;
             case 'NEW_MESSAGE':
-                console.log('sending a message', action.msg);
+                //console.log('sending a message', action.msg);
                 socket.send(JSON.stringify({ command: 'NEW_MESSAGE', message: action.msg }));
                 break;
             default:
-                console.log('the next action:', action);
+                //console.log('the next action:', action);
                 return next(action);
         }
     };
