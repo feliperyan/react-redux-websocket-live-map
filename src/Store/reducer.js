@@ -32,9 +32,7 @@ function reducer(state = initialState, action) {
     switch (action.type) {
 
         case 'MESSAGE_RECEIVED':
-            console.log('received message in reducer');
-            // return state.merge({latest_message: action.message});
-            // parseMessage(action.message, state);
+            console.log('received message in reducer');            
             const s = state.merge({latest_message: action.message});
             return parseMessage(action.message, s);
             
@@ -64,10 +62,18 @@ export const parseMessage = (message, state) => {
     };
 
     if (!found){
-        the_drones.push({id: message.Name, pos: [message.CurrentPosition.Lat, message.CurrentPosition.Lon]});
+        the_drones.push({
+            id: message.Name, 
+            pos: [message.CurrentPosition.Lat, message.CurrentPosition.Lon],
+            dest: message.Destinations,
+            next: message.NextDestination
+        });
     }
 
     return state.merge({drones: the_drones})
 }
 
 export default reducer;
+
+// Latest Message: {"CurrentPosition":{"Lat":-33.877503835763434,"Lon":151.23933024404133},"Destinations":[{"Lat":-33.811707885775505,"Lon":151.16920044779684},{"Lat":-33.81141612734178,"Lon":151.2038701989823},{"Lat":-33.88301968143585,"Lon":151.24228982821745},{"Lat":-33.85225,"Lon":151.2172}],"NextDestination":2,"Speed":0.003,"Name":"air1-1"}
+

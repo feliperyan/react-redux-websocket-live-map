@@ -21,9 +21,10 @@ const MyMapComponent = (props) => {
                     return (
                         <Marker position={val.pos} key={val.id}>
                         <Popup>
-                            A pretty CSS3 popup. <br /> Easily customizable.
+                            Drone ID: <span style={{fontWeight: "bold"}}>{val.id}</span><br/>
+                            Next Delivery: {val.dest[val.next].Lat}, {val.dest[val.next].Lon}
                         </Popup>
-                    </Marker> 
+                        </Marker>                         
                     )
                 })}
                                           
