@@ -1,5 +1,5 @@
 import React from 'react';
-import { Map, TileLayer, Marker, Popup } from 'react-leaflet';
+import { Map, TileLayer, Marker, Popup, Rectangle, Tooltip} from 'react-leaflet';
 import './map.css';
 
 const theStyle = {
@@ -27,7 +27,9 @@ const MyMapComponent = (props) => {
                         </Marker>                         
                     )
                 })}
-                                          
+                <Rectangle bounds={props.quadrant} color="orange">
+                    <Tooltip>Quadrant 1</Tooltip>
+                </Rectangle>                 
             </Map>
             
         </div>

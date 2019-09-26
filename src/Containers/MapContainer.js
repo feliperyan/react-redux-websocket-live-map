@@ -4,7 +4,8 @@ import MyMapComponent from '../Components/map';
 const mapStateToProps = state => (
     {
         map_data: state.the_map,
-        drones: state.drones
+        drones: state.drones,
+        quadrant: state.quadrant
     }
 )
 

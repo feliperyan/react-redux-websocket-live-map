@@ -23,7 +23,8 @@ const initialState = Immutable(
         },
         latest_message: 'Last one!',
         connection_status: 'connecting...',
-        drones: []
+        drones: [],
+        quadrant: [[-33.827365, 151.269182], [-33.832502, 151.280542]]
     }
 )
 
@@ -74,6 +75,4 @@ export const parseMessage = (message, state) => {
 }
 
 export default reducer;
-
-// Latest Message: {"CurrentPosition":{"Lat":-33.877503835763434,"Lon":151.23933024404133},"Destinations":[{"Lat":-33.811707885775505,"Lon":151.16920044779684},{"Lat":-33.81141612734178,"Lon":151.2038701989823},{"Lat":-33.88301968143585,"Lon":151.24228982821745},{"Lat":-33.85225,"Lon":151.2172}],"NextDestination":2,"Speed":0.003,"Name":"air1-1"}
 
