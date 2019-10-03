@@ -24,7 +24,10 @@ const initialState = Immutable(
         latest_message: 'Last one!',
         connection_status: 'connecting...',
         drones: [],
-        quadrant: [[-33.827365, 151.269182], [-33.832502, 151.280542]]
+        destinations: [],
+        showDestinationsFor: "",
+        quadrant: [[-33.827365, 151.269182], [-33.832502, 151.280542]],
+        dronePort: [-33.852695, 151.246606]
     }
 )
 
@@ -43,21 +46,28 @@ function reducer(state = initialState, action) {
         case 'STATUS_DISCONNECTED':
             return state.merge({connection_status: "Disconnected"})
 
+        case 'SHOW_DESTINATIONS_FOR_DRONE':
+            console.log("Clicked Marker");
+            console.log(action);
+            
+            return showHideDestinationsForDrone(action.id, state);
+
         default:
             console.log('reducer', state, action);
             return state;
-
     }
 }
 
-export const parseMessage = (message, state) => {
+// Checks the array of drones. If a matching drone was found, update its position
+// else insert a drone into the array.
+const parseMessage = (message, state) => {
     let the_drones = Immutable.asMutable(state.drones, {deep: true});
 
     let found = false;
 
     for(let i = 0; i < the_drones.length; i++){
         if (the_drones[i].id === message.Name) {
-            the_drones[i].pos = [message.CurrentPosition.Lat, message.CurrentPosition.Lon];
+            the_drones[i].pos = [message.CurrentPosition.Lat, message.CurrentPosition.Lon];            
             found = true;
         }
     };
@@ -72,6 +82,20 @@ export const parseMessage = (message, state) => {
     }
 
     return state.merge({drones: the_drones})
+}
+
+const showHideDestinationsForDrone = (id, state) => {    
+
+    // if we get the same droneID we should toggle off the destinations.
+    if (id === state.showDestinationsFor){
+        return state.merge({showDestinationsFor: "", destinations: []})
+    }
+
+    for(let i = 0; i < state.drones.length; i++){
+        if (state.drones[i].id === id) {
+            return state.merge({showDestinationsFor: id, destinations: state.drones[i].dest})
+        }
+    }
 }
 
 export default reducer;
