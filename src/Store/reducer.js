@@ -67,7 +67,8 @@ const parseMessage = (message, state) => {
 
     for(let i = 0; i < the_drones.length; i++){
         if (the_drones[i].id === message.Name) {
-            the_drones[i].pos = [message.CurrentPosition.Lat, message.CurrentPosition.Lon];            
+            the_drones[i].pos = [message.CurrentPosition.Lat, message.CurrentPosition.Lon];
+            the_drones[i].next = message.NextDestination
             found = true;
         }
     };

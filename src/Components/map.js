@@ -1,5 +1,6 @@
 import React from 'react';
 import { Map, TileLayer, Popup, Rectangle, Tooltip, Marker} from 'react-leaflet';
+import L from 'leaflet';
 import './map.css';
 
 import { DriftMarker } from "leaflet-drift-marker"
@@ -8,6 +9,25 @@ const theStyle = {
     width: "80%",
     height: "600px"
 };
+
+export const droneIcon = new L.Icon({
+    iconUrl: require('../assets/drone_purple.svg'),
+    iconRetinaUrl: require('../assets/drone_purple.svg'),
+    iconAnchor: [12, 12],
+    popupAnchor: [3, -15],
+    iconSize: [25, 25],
+    shadowUrl: require('../assets/shadow.svg'),
+    shadowSize: [25, 25],
+    shadowAnchor: [9, 10],
+  })
+
+  export const homeIcon = new L.Icon({
+    iconUrl: require('../assets/home.svg'),
+    iconRetinaUrl: require('../assets/home.svg'),
+    iconAnchor: [12, 12],
+    popupAnchor: [3, -15],
+    iconSize: [25, 25],
+  })
 
 const MyMapComponent = (props) => {
 
@@ -26,17 +46,19 @@ const MyMapComponent = (props) => {
                 </Marker>
                 {props.drones.map((val, index) => {
                     return (
-                        <DriftMarker position={val.pos} duration={1000} key={val.id} onClick={() => props.showDestinations(val.id)}>
+                        <DriftMarker icon={droneIcon} position={val.pos} duration={1000} key={val.id} onClick={() => props.showDestinations(val.id)}>
                         <Popup>
                             Drone ID: <span style={{fontWeight: "bold"}}>{val.id}</span><br/>
-                            Next Delivery: {val.dest[val.next].Lat}, {val.dest[val.next].Lon}
+                            Delivery: {val.next} / {val.dest.length - 1} <br/>
+                            Next: {val.dest[val.next].Lat}, {val.dest[val.next].Lon} <br/>
+
                         </Popup>
                         </DriftMarker>                         
                     )
                 })}
                 {props.destinations.map((val, index) => {
                     return (
-                        <Marker position={[val.Lat, val.Lon]} key={index}>                        
+                        <Marker icon={homeIcon} position={[val.Lat, val.Lon]} key={index}>                        
                         </Marker>                         
                     )
                 })}
