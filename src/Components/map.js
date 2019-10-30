@@ -33,7 +33,7 @@ const MyMapComponent = (props) => {
 
     return (
         <div className="map-container">
-            <p>My Map here: {JSON.stringify(props.map_data)}</p>
+           
             <Map center={[props.map_data.lat, props.map_data.lng]} zoom={props.map_data.zoom} style={theStyle}>
                 <TileLayer
                     attribution='&copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
