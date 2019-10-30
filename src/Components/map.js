@@ -5,25 +5,29 @@ import './map.css';
 
 import { DriftMarker } from "leaflet-drift-marker"
 
+import {ReactComponent as dronePurple} from '../assets/drone_purple.svg';
+import {ReactComponent as shadow} from '../assets/shadow.svg';
+import {ReactComponent as homePic} from '../assets/home.svg';
+
 const theStyle = {
     width: "80%",
     height: "600px"
 };
 
 export const droneIcon = new L.Icon({
-    iconUrl: require('../assets/drone_purple.svg'),
-    iconRetinaUrl: require('../assets/drone_purple.svg'),
+    iconUrl: dronePurple, //require('../assets/drone_purple.svg'),
+    iconRetinaUrl: dronePurple, //require('../assets/drone_purple.svg'),
     iconAnchor: [12, 12],
     popupAnchor: [3, -15],
     iconSize: [25, 25],
-    shadowUrl: require('../assets/shadow.svg'),
+    shadowUrl:  shadow, //require('../assets/shadow.svg'),
     shadowSize: [25, 25],
     shadowAnchor: [9, 10],
   })
 
   export const homeIcon = new L.Icon({
-    iconUrl: require('../assets/home.svg'),
-    iconRetinaUrl: require('../assets/home.svg'),
+    iconUrl: homePic, //require('../assets/home.svg'),
+    iconRetinaUrl: homePic, //require('../assets/home.svg'),
     iconAnchor: [12, 12],
     popupAnchor: [3, -15],
     iconSize: [25, 25],
