@@ -62,9 +62,9 @@ const MyMapComponent = (props) => {
                         </Marker>                         
                     )
                 })}
-                <Rectangle bounds={props.quadrant} color="orange">
+                {/* <Rectangle bounds={props.quadrant} color="orange">
                     <Tooltip>Quadrant 1</Tooltip>
-                </Rectangle>                 
+                </Rectangle>                  */}
             </Map>
             
         </div>
