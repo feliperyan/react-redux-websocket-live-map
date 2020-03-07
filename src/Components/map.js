@@ -49,9 +49,8 @@ const MyMapComponent = (props) => {
                         <DriftMarker icon={droneIcon} position={val.pos} duration={1000} key={val.id} onClick={() => props.showDestinations(val.id)}>
                         <Popup>
                             Drone ID: <span style={{fontWeight: "bold"}}>{val.id}</span><br/>
-                            Delivery: {val.next} / {val.dest.length - 1} <br/>
-                            Next: {val.dest[val.next].Lat}, {val.dest[val.next].Lon} <br/>
-
+                            Delivery: {val.next} / {val.Destinations.length - 1} <br/>
+                            Next: {val.Destinations[val.next].Lat}, {val.Destinations[val.next].Lon} <br/>
                         </Popup>
                         </DriftMarker>                         
                     )
@@ -62,11 +61,7 @@ const MyMapComponent = (props) => {
                         </Marker>                         
                     )
                 })}
-                {/* <Rectangle bounds={props.quadrant} color="orange">
-                    <Tooltip>Quadrant 1</Tooltip>
-                </Rectangle>                  */}
             </Map>
-            
         </div>
     )
 }

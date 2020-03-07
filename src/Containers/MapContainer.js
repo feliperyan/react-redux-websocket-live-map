@@ -10,13 +10,14 @@ const mapStateToProps = state => (
         destinationFor: state.showDestinationsFor,
         destinations: state.destinations
     }
-)
+);
 
 const mapDispatchToProps = dispatch => {
     return {
       // dispatching plain actions
       showDestinations: (droneId) => dispatch({ type: 'SHOW_DESTINATIONS_FOR_DRONE', id: droneId}),
     }
-  }
+};
+
 
 export default connect(mapStateToProps, mapDispatchToProps)(MyMapComponent);
