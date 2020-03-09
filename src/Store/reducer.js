@@ -14,15 +14,15 @@ import Immutable from 'seamless-immutable';
 //     "Name":"air1-1"
 // }
 
-const initialState = Immutable(
+const initialState = Immutable (
     {
         the_map: {
             lat: -33.852695,
             lng: 151.246606,
             zoom: 13,            
         },
-        latest_message: 'Last one!',
-        connection_status: 'connecting...',
+        latest_message: 'Awaiting...',
+        connection_status: 'Not Connected',
         drones: [],
         destinations: [],
         showDestinationsFor: "",
@@ -35,25 +35,26 @@ function reducer(state = initialState, action) {
     
     switch (action.type) {
 
-        case 'MESSAGE_RECEIVED':
-            // console.log('received message in reducer');            
-            const s = state.merge({latest_message: action.message});
+        case 'MESSAGE_RECEIVED':            
+            console.log('Received from Server: ' + JSON.stringify(action.message));
+            const s = state.merge({latest_message: action.message});            
             return parseMessage(action.message, s);
             
         case 'STATUS_CONNECTED':
-            return state.merge({connection_status: "Connected"})
+            return state.merge({connection_status: "✅"})
 
         case 'STATUS_DISCONNECTED':
-            return state.merge({connection_status: "Disconnected"})
+            return state.merge({connection_status: "❌"})
 
         case 'SHOW_DESTINATIONS_FOR_DRONE':
-            // console.log("Clicked Marker");
-            // console.log(action);
-            
             return showHideDestinationsForDrone(action.id, state);
+        
+        case 'NEW_MESSAGE':
+            console.log('Signal Issue:');
+            console.log(action.message);
+            return;
 
         default:
-            // console.log('reducer', state, action);
             return state;
     }
 }
@@ -72,8 +73,8 @@ const parseMessage = (message, state) => {
             the_drones[i].Destinations = message.Destinations;
             found = true;
 
-            if (state.showDestinationsFor === message.Name) {
-                console.log('updating destinations...');
+            // Destinations may change so keep updating it.
+            if (state.showDestinationsFor === message.Name) {                
                 return state.merge({
                     drones: the_drones,
                     destinations: message.Destinations
@@ -105,11 +106,8 @@ const showHideDestinationsForDrone = (id, state) => {
     }
 
     for(let i = 0; i < state.drones.length; i++){
-        if (state.drones[i].id === id) {
-            
-            const dests = state.drones[i].Destinations;
-
-            console.log('Showing dests: ' + dests);
+        if (state.drones[i].id === id) {            
+            const dests = state.drones[i].Destinations;            
             return state.merge({showDestinationsFor: id, destinations: dests})
         }
     }

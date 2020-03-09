@@ -15,22 +15,19 @@ class Socketer extends React.Component {
 
     connectAndJoin = () => {
         const { dispatch } = this.props;
-        // const host = `ws://127.0.0.1:8000/ws/game/${id}?token=${localStorage.getItem('token')}`;
-        
+                
         // Local Dev
         const host = 'ws://localhost:8080/ws'
-        
-        // Heroku Prod
-        // const host = 'wss://high-vol-vehicle-cnsmr-fryan.herokuapp.com/ws'
         
         dispatch(wsConnect(host));
     };
 
 
     render() {
-        // abridged for brevity
+        
         return (
-            <p> Connections status: {this.props.connection_status} </p>
+            // <p> Connections status: {this.props.connection_status} </p>
+            <br/>
         );
     }
 

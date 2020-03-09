@@ -48,8 +48,8 @@ const SocketMiddleware = () => {
                 //console.log('websocket closed');
                 break;
             case 'NEW_MESSAGE':
-                //console.log('sending a message', action.msg);
-                socket.send(JSON.stringify({ command: 'NEW_MESSAGE', message: action.msg }));
+                console.log('sending a message', action.message);
+                socket.send(JSON.stringify({ command: 'NEW_MESSAGE', message: action.message }));
                 break;
             default:
                 //console.log('the next action:', action);

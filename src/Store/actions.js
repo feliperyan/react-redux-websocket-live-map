@@ -11,3 +11,4 @@ export const receivedMessage = message => ({type: 'MESSAGE_RECEIVED', message});
 export const disconnectedToWS = () => ({type: 'STATUS_DISCONNECTED'});
 export const connectedToWS = () => ({type: 'STATUS_CONNECTED'});
 
+export const messageToServer = message => ({type: 'NEW_MESSAGE', message });

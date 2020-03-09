@@ -1,14 +1,9 @@
 import React from 'react';
 import { Map, TileLayer, Popup, Rectangle, Tooltip, Marker} from 'react-leaflet';
 import L from 'leaflet';
-import './map.css';
+
 
 import { DriftMarker } from "leaflet-drift-marker"
-
-const theStyle = {
-    width: "80%",
-    height: "600px"
-};
 
 export const droneIcon = new L.Icon({
     iconUrl: require('../assets/drone_purple.svg'),
@@ -32,9 +27,8 @@ export const droneIcon = new L.Icon({
 const MyMapComponent = (props) => {
 
     return (
-        <div className="map-container">
-            <p>My Map here: {JSON.stringify(props.map_data)}</p>
-            <Map center={[props.map_data.lat, props.map_data.lng]} zoom={props.map_data.zoom} style={theStyle}>
+        <div>            
+            <Map className="map-tag" center={[props.map_data.lat, props.map_data.lng]} zoom={props.map_data.zoom}>
                 <TileLayer
                     attribution='&copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
                     url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
@@ -56,12 +50,17 @@ const MyMapComponent = (props) => {
                     )
                 })}
                 {props.destinations.map((val, index) => {
-                    return (
-                        <Marker icon={homeIcon} position={[val.Lat, val.Lon]} key={index}>                        
-                        </Marker>                         
-                    )
+                    if (index !== props.destinations.length -1){
+                        return (
+                            <Marker icon={homeIcon} position={[val.Lat, val.Lon]} key={index}>                        
+                            </Marker>                         
+                        )
+                    }
                 })}
             </Map>
+
+            <p>Map centre: {JSON.stringify(props.map_data)}</p>
+
         </div>
     )
 }
