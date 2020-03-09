@@ -71,6 +71,7 @@ const parseMessage = (message, state) => {
             the_drones[i].pos = [message.CurrentPosition.Lat, message.CurrentPosition.Lon];
             the_drones[i].next = message.NextDestination;
             the_drones[i].Destinations = message.Destinations;
+            the_drones[i].status = message.Status;
             found = true;
 
             // Destinations may change so keep updating it.
@@ -89,7 +90,8 @@ const parseMessage = (message, state) => {
             id: message.Name, 
             pos: [message.CurrentPosition.Lat, message.CurrentPosition.Lon],
             Destinations: message.Destinations,
-            next: message.NextDestination
+            next: message.NextDestination,
+            status: message.Status
         });
     }
 

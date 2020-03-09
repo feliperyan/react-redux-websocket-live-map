@@ -6,7 +6,7 @@ const DroneSignalComponent = (props) => {
             {props.drones.map((val, index) => {
                 return (
                     <div>
-                        <p key={val.id}>Drone {val.id}</p>
+                        <p key={val.id}>Drone {val.id} - {val.status}</p>
                         <button onClick={ () => {
                             props.signalDefect(val.id, 'Obstruction'); }
                         }> BUTTON </button>
