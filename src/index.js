@@ -9,11 +9,13 @@ import { Provider } from 'react-redux'
 import reducer from './Store/reducer';
 import SocketMiddleware from './Middleware/middleware';
 
+
+
 const store = createStore(
     reducer, 
     compose(
         applyMiddleware(SocketMiddleware), 
-        window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+        // window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
     )
 );
 

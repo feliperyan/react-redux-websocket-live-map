@@ -10,14 +10,14 @@ class Socketer extends React.Component {
         //   this.connectAndJoin();
         // }
 
-        this.connectAndJoin();
+        this.connectAndJoin(this.props.address);
     }
 
-    connectAndJoin = () => {
+    connectAndJoin = (addr) => {
         const { dispatch } = this.props;
                 
         // Local Dev
-        const host = 'ws://localhost:8080/ws'
+        const host = addr;
         
         dispatch(wsConnect(host));
     };
