@@ -6,7 +6,6 @@ import MapContainer from './Containers/MapContainer';
 import DroneSignalContainer from './Containers/DroneSignalContainer';
 
 import logo from './logo2.svg';
-// import logo from './9855.jpg';
 
 function App() {
 

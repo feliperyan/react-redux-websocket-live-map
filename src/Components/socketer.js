@@ -18,7 +18,6 @@ class Socketer extends React.Component {
                 
         // Local Dev
         const host = addr;
-        
         dispatch(wsConnect(host));
     };
 
