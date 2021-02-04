@@ -1,33 +1,77 @@
-.App {
-  text-align: center;
+.row {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 100%;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
-  pointer-events: none;
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.column {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  flex-basis: 100%;
+  flex: 1;
 }
 
-.App-link {
-  color: #61dafb;
+.double-column {
+  display: flex;
+  flex-direction: column;
+  flex-basis: 100%;
+  flex: 2;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.App {
+  margin: 1em;
+}
+
+.top-bar {
+  margin: 0.5em;
+  padding: 0.5em;
+  background-color: #03396c;
+}
+
+.map-container {
+  padding: 0.5em;
+  background-color:#005b96;
+  margin: 0.5em;
+}
+
+.map-tag {
+  height: 360px;
+  width: 100%
+}
+
+.right-bar {
+  margin: 0.5em;
+}
+
+.signal-comp {
+  padding: 0.5em;
+  background-color: #6497b1;
+  margin-top: 1em;
+}
+
+.signal-comp-drone {
+  padding-bottom: 0.25em;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.8);
+}
+
+.console {
+  padding: 0.5em;
+  font-weight: bold;
+  background-color: #b3cde0;
+}
+
+@media screen and (min-width: 800px) {
+  .column {
+    flex: 1
   }
-  to {
-    transform: rotate(360deg);
+
+  .double-column {
+    flex: 2
   }
+
+  .map-tag {
+    height: 600px;
+  }
+  
 }

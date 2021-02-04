@@ -1,18 +1,9 @@
 import React from 'react';
 import { Map, TileLayer, Popup, Rectangle, Tooltip, Marker} from 'react-leaflet';
 import L from 'leaflet';
-import './map.css';
+
 
 import { DriftMarker } from "leaflet-drift-marker"
-
-import {ReactComponent as dronePurple} from '../assets/drone_purple.svg';
-import {ReactComponent as shadow} from '../assets/shadow.svg';
-import {ReactComponent as homePic} from '../assets/home.svg';
-
-const theStyle = {
-    width: "80%",
-    height: "600px"
-};
 
 export const droneIcon = new L.Icon({
     iconUrl: dronePurple, //require('../assets/drone_purple.svg'),
@@ -36,9 +27,9 @@ export const droneIcon = new L.Icon({
 const MyMapComponent = (props) => {
 
     return (
-        <div className="map-container">
-           
-            <Map center={[props.map_data.lat, props.map_data.lng]} zoom={props.map_data.zoom} style={theStyle}>
+        <div>            
+            <Map className="map-tag" center={[props.map_data.lat, props.map_data.lng]} zoom={props.map_data.zoom}>
+
                 <TileLayer
                     attribution='&copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
                     url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
@@ -53,24 +44,24 @@ const MyMapComponent = (props) => {
                         <DriftMarker icon={droneIcon} position={val.pos} duration={1000} key={val.id} onClick={() => props.showDestinations(val.id)}>
                         <Popup>
                             Drone ID: <span style={{fontWeight: "bold"}}>{val.id}</span><br/>
-                            Delivery: {val.next} / {val.dest.length - 1} <br/>
-                            Next: {val.dest[val.next].Lat}, {val.dest[val.next].Lon} <br/>
-
+                            Delivery: {val.next} / {val.Destinations.length - 1} <br/>
+                            Next: {val.Destinations[val.next].Lat}, {val.Destinations[val.next].Lon} <br/>
                         </Popup>
                         </DriftMarker>                         
                     )
                 })}
                 {props.destinations.map((val, index) => {
-                    return (
-                        <Marker icon={homeIcon} position={[val.Lat, val.Lon]} key={index}>                        
-                        </Marker>                         
-                    )
+                    if (index !== props.destinations.length -1){
+                        return (
+                            <Marker icon={homeIcon} position={[val.Lat, val.Lon]} key={index}>                        
+                            </Marker>                         
+                        )
+                    }
                 })}
-                <Rectangle bounds={props.quadrant} color="orange">
-                    <Tooltip>Quadrant 1</Tooltip>
-                </Rectangle>                 
             </Map>
-            
+
+            <p>Map centre: {JSON.stringify(props.map_data)}</p>
+
         </div>
     )
 }

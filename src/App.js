@@ -2,15 +2,40 @@ import React from 'react';
 import './App.css';
 import ConsoleComponent from './Components/console';
 import Socketer from './Components/socketer';
-// import MapComponent from './Components/map';
 import MapContainer from './Containers/MapContainer';
+import DroneSignalContainer from './Containers/DroneSignalContainer';
+
+import logo from './logo2.svg';
 
 function App() {
+
+  let ws_address = "ws://localhost:8080/ws"
+  if (process.env.REACT_APP_WSADDRESS !== "" && process.env.REACT_APP_WSADDRESS !== undefined) {
+    ws_address = process.env.REACT_APP_WSADDRESS + "/ws";
+  }
+
   return (
+    
     <div className="App">
-      <Socketer />
-      <MapContainer />
-      <ConsoleComponent />          
+      <div className="row">
+        <div className="column top-bar">          
+          <img src={logo} alt="logo"/>
+        </div>
+      </div>
+      <div className="row">
+        <div className="double-column">
+          <div className="map-container">
+            <MapContainer />
+          </div>
+        </div>
+        <div className="column">
+        <div className="right-bar">
+          <ConsoleComponent />
+          <DroneSignalContainer />
+        </div>
+        </div>
+      </div>      
+      <Socketer address={ws_address}/>
     </div>
   );
 }
