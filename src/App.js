@@ -11,10 +11,10 @@ import logo from './logo2.svg';
 function App() {
 
   let ws_address = "ws://localhost:8080/ws"
-  if (window.WSADDRESS !== "" && window.WSADDRESS !== undefined) {
-    ws_address = "ws://" + window.WSADDRESS + "/ws";
+  if (process.env.WSADDRESS !== "" && process.env.WSADDRESS !== undefined) {
+    ws_address = "ws://" + process.env.WSADDRESS + "/ws";
     if (document.location.protocol === 'https:') {
-      ws_address = "wss://" + window.WSADDRESS + "/ws";
+      ws_address = "wss://" + process.env.WSADDRESS + "/ws";
     }    
   }
 
